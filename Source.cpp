@@ -366,47 +366,47 @@ if(f==0)
 cout<<"Train Does Not Exist";
 else
 {
-				remove("train.dat");
-				rename("Temp.dat","train.dat");
+remove("train.dat");
+rename("Temp.dat","train.dat");
 }
 }
 }
 void train::insertfile()
 {	
-		train t1,t2;
-		int f=0;
-		ifstream infile("train.dat");
-		ofstream onfile ("temp.dat");
-		if(!infile)
-		cout<<"File does not exist ";
-		else
+train t1,t2;
+int f=0;
+ifstream infile("train.dat");
+ofstream onfile ("temp.dat");
+if(!infile)
+cout<<"File does not exist ";
+else
 {		
-			cout<<"\n\tEnter New Train Information ";
-			t1.Input();
-			while((infile.read((char*)&t2,sizeof(t2))&&(f==0)))
+cout<<"\n\tEnter New Train Information ";
+t1.Input();
+while((infile.read((char*)&t2,sizeof(t2))&&(f==0)))
 {
-				if (t1.f_no<t2.f_no)
+if (t1.f_no<t2.f_no)
 {
-					f=1;
-					onfile.write((char*)&t1,sizeof(t1));
-}
-				onfile.write((char*)&t2,sizeof(t2));
-}
-			if(f==1)
-{	
-				while(infile)
-{
-					onfile.write((char*)&t2,sizeof(t2));
-					infile.read((char*)&t2,sizeof(t2));
-}
-}
-			else
-			{
+f=1;
 onfile.write((char*)&t1,sizeof(t1));
-				onfile.close();
-				infile.close();
-				remove("train.dat");
-				rename("temp.dat","train.dat");
+}
+onfile.write((char*)&t2,sizeof(t2));
+}
+if(f==1)
+{	
+while(infile)
+{
+onfile.write((char*)&t2,sizeof(t2));
+infile.read((char*)&t2,sizeof(t2));
+}
+}
+else
+{
+onfile.write((char*)&t1,sizeof(t1));
+onfile.close();
+infile.close();
+remove("train.dat");
+rename("temp.dat","train.dat");
 }
 }
 }	
